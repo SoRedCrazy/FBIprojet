@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">FBIprojet</string>
+    <string name="action_favorite">Favorite</string>
+    <string name="action_settings">Preference</string>
+    <string name="action_home">Home</string>
+    <string name="action_internet">Site FBI</string>
 </resources>
