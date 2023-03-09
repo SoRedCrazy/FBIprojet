@@ -2,21 +2,43 @@ package com.example.fbiprojet;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.os.LocaleListCompat;
+import androidx.preference.PreferenceManager;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
 public class HomeActivity extends AppCompatActivity {
-
+    SharedPreferences sharedPreferences;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
         Toolbar toolbar=findViewById(R.id.my_toolbar);
         setSupportActionBar(toolbar);
+
+
+        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        boolean darkmode = sharedPreferences.getBoolean("darkmode", false);
+        if (darkmode) {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+        }
+
+
+        String langue = sharedPreferences.getString("langue", "en-EN");
+        if(langue.equals("fr-FR")){
+            LocaleListCompat appLocale = LocaleListCompat.forLanguageTags("fr-FR");
+            AppCompatDelegate.setApplicationLocales(appLocale);
+        }if(langue.equals("en-US")){
+            LocaleListCompat appLocale = LocaleListCompat.forLanguageTags("en-EN");
+            AppCompatDelegate.setApplicationLocales(appLocale);
+        }
+
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
