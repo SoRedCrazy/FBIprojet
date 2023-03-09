@@ -26,14 +26,21 @@ public class HomeActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        Intent i;
         switch (item.getItemId()){
             case R.id.action_favorite:
-                Intent i = new Intent(this,FavoriteActivity.class);
+                i = new Intent(this,FavoriteActivity.class);
                 startActivity(i);
 
                 return true;
             case R.id.action_settings:
-                //Vous exécutez votre code ici
+                i = new Intent(this,SettingActivity.class);
+                startActivity(i);
+                return true;
+
+            case R.id.action_internet:
+                i = new Intent(this,InternetActivity.class);
+                startActivity(i);
                 return true;
         }
 
