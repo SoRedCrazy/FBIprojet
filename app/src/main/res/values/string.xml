@@ -10,6 +10,11 @@
     <string name="title_langue">Language</string>
     <string name="Sumary_langue">choice of language</string>
     <string name="entries_langue">Language</string>
+    <string name="register_connexion">connexion/register</string>
+    <string name="name">name</string>
+    <string name="password">password</string>
+    <string name="btn_register_connexion">connexion/register</string>
+    <string name="btn_logout">logout</string>
     <string-array name="lang">
         <item>English</item>
         <item>French</item>

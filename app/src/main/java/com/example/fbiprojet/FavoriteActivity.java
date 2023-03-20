@@ -1,22 +1,27 @@
 package com.example.fbiprojet;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 public class FavoriteActivity extends AppCompatActivity {
-
+    SharedPreferences sharedpreferences;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_favorite);
         Toolbar toolbar=findViewById(R.id.my_toolbar);
         setSupportActionBar(toolbar);
+        sharedpreferences = getSharedPreferences("session", Context.MODE_PRIVATE);
+
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -45,5 +50,13 @@ public class FavoriteActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void run(View v){
+        SharedPreferences.Editor editor = sharedpreferences.edit();
+        editor.clear();
+        editor.commit();
+        Intent it = new Intent(this , ConnexionActivity.class);
+        startActivity(it);
     }
 }
