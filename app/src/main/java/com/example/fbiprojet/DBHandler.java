@@ -9,6 +9,9 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+
 public class DBHandler extends SQLiteOpenHelper {
     public static final int DATABASE_VERSION = 1;
     public static final String DATABASE_NAME = "Form.db";
@@ -89,12 +92,41 @@ public class DBHandler extends SQLiteOpenHelper {
         return db.insert(DBContract.Form.TABLE_NAME_LIKED,null,row);
     }
 
-    public void deletelike (int id){
+    public ArrayList<String> getlikes(int userid){
+        SQLiteDatabase db = this.getReadableDatabase();
+        String[] projection = {
+                DBContract.Form.LIKED_COLUMN_UID,
+        };
+        String selection = DBContract.Form.LIKED_COLUMN_USER + " >= ?";
+        String[] selectionArgs = {String.valueOf(userid)};
+
+        Cursor cursor = db.query(
+                DBContract.Form.TABLE_NAME_LIKED,
+                projection,
+                selection,
+                selectionArgs,
+                null,
+                null,
+                null
+        );
+
+        ArrayList<String> liststring= new ArrayList<String>();
+        while (cursor.moveToNext()) {
+            @SuppressLint("Range") String uid = cursor.getString(cursor.getColumnIndex(DBContract.Form.LIKED_COLUMN_UID));
+            liststring.add(uid);
+        }
+        cursor.close();
+        return liststring;
+    }
+
+
+
+    public void deletelike (int userid, String uid){
         SQLiteDatabase db = this.getWritableDatabase();
 
-        String selection = DBContract.Form.LIKE_ID +" LIKE ? ";
+        String selection = DBContract.Form.LIKED_COLUMN_USER +" LIKE ? AND " + DBContract.Form.LIKED_COLUMN_UID +" LIKE ? ";
 
-        String[] selectionArgs = {String.valueOf(id)};
+        String[] selectionArgs = {String.valueOf(userid),uid};
         int count = db.delete(DBContract.Form.TABLE_NAME_LIKED,selection,selectionArgs);
     }
 
