@@ -21,6 +21,11 @@ import java.util.Locale;
 
 public class SettingActivity extends AppCompatActivity implements SharedPreferences.OnSharedPreferenceChangeListener{
     SharedPreferences sharedPreferences;
+
+    /**
+     * ajout du fragement Setting et change le listener des preferences
+     * @param savedInstanceState
+     */
     @SuppressLint("ResourceType")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,7 +40,11 @@ public class SettingActivity extends AppCompatActivity implements SharedPreferen
 
     }
 
-
+    /**
+     * modification suite au clique sur les preferences
+     * @param sharedPreferences
+     * @param key
+     */
     @Override
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
 

@@ -16,6 +16,10 @@ import android.view.MenuItem;
 
 public class HomeActivity extends AppCompatActivity {
     SharedPreferences sharedPreferences;
+    /**
+     * Preparation du layout plus verfie les parametre de preference
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,12 +45,21 @@ public class HomeActivity extends AppCompatActivity {
         }
 
     }
+    /**
+     * Ajoute les boutons du menu dans la toolbar
+     * @param menu
+     * @return
+     */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_home,menu);
         return true;
     }
-
+    /**
+     * ajoute les action des items des tool bars
+     * @param item
+     * @return
+     */
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         Intent i;

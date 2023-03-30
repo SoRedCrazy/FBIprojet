@@ -163,7 +163,7 @@ public class DBHandler extends SQLiteOpenHelper {
 
 
     /**
-     * permet de dislikes
+     * permet de dislikes un wanted
      *
      * @param userid
      * @param uid

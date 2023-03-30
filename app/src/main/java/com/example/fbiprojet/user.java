@@ -1,5 +1,8 @@
 package com.example.fbiprojet;
 
+/**
+ * Objet user sert a notres DBHander
+ */
 public class user {
     int id;
     String name,password;

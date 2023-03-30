@@ -29,9 +29,7 @@ public class ConnexionActivity extends AppCompatActivity {
 
     /**
      * Lance activity ajoute la tool bars puis se connecter a la base de donnée verifie si on est aps deja connecté
-     *
-     *
-     *
+     * @param savedInstanceState
      */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,20 +45,23 @@ public class ConnexionActivity extends AppCompatActivity {
             startActivity(it);
         }
     }
+
+
     /**
-     * Ajoutes les bouton du favorite menu dans la tool bar
-     *
-     *
+     * Ajoute les boutons du menu dans la toolbar
+     * @param menu
+     * @return
      */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.favorite_menu,menu);
         return true;
     }
+
     /**
      * ajoute les action des items des tool bars
-     *
-     *
+     * @param item
+     * @return
      */
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
@@ -91,7 +92,7 @@ public class ConnexionActivity extends AppCompatActivity {
     }
     /**
      * regarde si l'utilisateur existe si non on l'ajoute si oui on verifie le mots de passe.
-     *
+     * @param v
      *
      */
     public void run(View v){

@@ -8,6 +8,11 @@ import androidx.appcompat.widget.Toolbar;
 
 public class InternetActivity extends AppCompatActivity {
     WebView wb;
+
+    /**
+     * Lance la webview sur le sites du FBI
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -17,6 +22,10 @@ public class InternetActivity extends AppCompatActivity {
         wb.loadUrl("https://www.fbi.gov/services");
         wb.getSettings().setJavaScriptEnabled(true);
     }
+
+    /**
+     * sert au retour de la pile des lien cliquer
+     */
     @Override
     public void onBackPressed() {
         if (wb.canGoBack()) {

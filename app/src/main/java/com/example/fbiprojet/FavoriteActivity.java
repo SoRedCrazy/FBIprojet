@@ -15,6 +15,11 @@ import androidx.appcompat.widget.Toolbar;
 
 public class FavoriteActivity extends AppCompatActivity {
     SharedPreferences sharedpreferences;
+
+    /**
+     * Preparation du layout plus verifie si connecter
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -22,14 +27,28 @@ public class FavoriteActivity extends AppCompatActivity {
         Toolbar toolbar=findViewById(R.id.my_toolbar);
         setSupportActionBar(toolbar);
         sharedpreferences = getSharedPreferences("session", Context.MODE_PRIVATE);
-
+        if(sharedpreferences != null){
+            Intent it = new Intent(this , ConnexionActivity.class);
+            startActivity(it);
+        }
     }
+
+    /**
+     * Ajoute les boutons du menu dans la toolbar
+     * @param menu
+     * @return
+     */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.favorite_menu,menu);
         return true;
     }
 
+    /**
+     * ajoute les action des items des tool bars
+     * @param item
+     * @return
+     */
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         Intent i;
@@ -59,6 +78,10 @@ public class FavoriteActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    /**
+     * deconnect l'utilisateur et le renvoie a la connection
+     * @param v
+     */
     public void run(View v){
         SharedPreferences.Editor editor = sharedpreferences.edit();
         editor.clear();
