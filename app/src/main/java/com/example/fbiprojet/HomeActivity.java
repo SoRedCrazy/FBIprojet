@@ -9,6 +9,7 @@ import androidx.preference.PreferenceManager;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -62,6 +63,11 @@ public class HomeActivity extends AppCompatActivity {
 
             case R.id.action_internet:
                 i = new Intent(this,InternetActivity.class);
+                startActivity(i);
+                return true;
+            case R.id.action_phone:
+                Uri tel= Uri.parse("tel:911");
+                i = new Intent(Intent.ACTION_DIAL,tel);
                 startActivity(i);
                 return true;
         }

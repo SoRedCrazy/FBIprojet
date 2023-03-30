@@ -3,6 +3,7 @@ package com.example.fbiprojet;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -15,9 +16,23 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+/**
+ * Gere la inscription et la connexion de du layout activity_connexion_register.xml
+ *
+ *
+ *
+ */
+
 public class ConnexionActivity extends AppCompatActivity {
     DBHandler db;
     SharedPreferences sharedpreferences;
+
+    /**
+     * Lance activity ajoute la tool bars puis se connecter a la base de donnée verifie si on est aps deja connecté
+     *
+     *
+     *
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,12 +47,21 @@ public class ConnexionActivity extends AppCompatActivity {
             startActivity(it);
         }
     }
+    /**
+     * Ajoutes les bouton du favorite menu dans la tool bar
+     *
+     *
+     */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.favorite_menu,menu);
         return true;
     }
-
+    /**
+     * ajoute les action des items des tool bars
+     *
+     *
+     */
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         Intent i;
@@ -56,11 +80,20 @@ public class ConnexionActivity extends AppCompatActivity {
                 i = new Intent(this,InternetActivity.class);
                 startActivity(i);
                 return true;
+            case R.id.action_phone:
+                Uri tel= Uri.parse("tel:911");
+                i = new Intent(Intent.ACTION_DIAL,tel);
+                startActivity(i);
+                return true;
         }
 
         return super.onOptionsItemSelected(item);
     }
-
+    /**
+     * regarde si l'utilisateur existe si non on l'ajoute si oui on verifie le mots de passe.
+     *
+     *
+     */
     public void run(View v){
         EditText edtname = (EditText) findViewById(R.id.name);
         EditText edtpassord = (EditText) findViewById(R.id.password);

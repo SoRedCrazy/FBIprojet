@@ -2,8 +2,10 @@ package com.example.fbiprojet;
 
 public class DBContract {
 
-
-        public static class Form {
+    /**
+     * Deux table User et liked
+     */
+    public static class Form {
             public static final String TABLE_NAME_USER = "user";
             public static final String USER_ID = "id";
             public static final String USER_COLUMN_NAME = "nom";

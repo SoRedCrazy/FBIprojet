@@ -12,10 +12,17 @@
         android:icon="@drawable/ic_world"
         android:title="@string/action_internet"
         app:showAsAction="ifRoom"/>
+    <item
+        android:id="@+id/action_phone"
+        android:title="@string/action_phone"
+        android:icon="@drawable/ic_phone"
+        app:showAsAction="ifRoom"/>
+
 
     <item
         android:id="@+id/action_settings"
         android:title="@string/action_settings"
         app:showAsAction="never"/>
+
 
 </menu>

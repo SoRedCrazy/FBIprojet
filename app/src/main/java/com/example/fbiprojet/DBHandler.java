@@ -12,6 +12,10 @@ import android.database.sqlite.SQLiteOpenHelper;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 
+/**
+ * Gestion de nos table de bdd
+ */
+
 public class DBHandler extends SQLiteOpenHelper {
     public static final int DATABASE_VERSION = 1;
     public static final String DATABASE_NAME = "Form.db";
@@ -19,6 +23,12 @@ public class DBHandler extends SQLiteOpenHelper {
     public DBHandler(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
+
+    /**
+     * Creation de nos deux tables
+     *
+     * @param db
+     */
     @Override
     public void onCreate(SQLiteDatabase db) {
         String query =  "CREATE TABLE " + DBContract.Form.TABLE_NAME_USER + " (" +
@@ -34,6 +44,14 @@ public class DBHandler extends SQLiteOpenHelper {
                 + " FOREIGN KEY ("+DBContract.Form.LIKED_COLUMN_USER+") REFERENCES "+DBContract.Form.TABLE_NAME_USER+"("+DBContract.Form.USER_ID+"))";
         db.execSQL(query);
     }
+
+    /**
+     * au cas ou d'upgrade de la base
+     *
+     * @param db
+     * @param oldVersion
+     * @param newVersion
+     */
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         String query = "DROP TABLE IF EXISTS " + DBContract.Form.TABLE_NAME_USER;
@@ -42,6 +60,14 @@ public class DBHandler extends SQLiteOpenHelper {
         db.execSQL(query);
         onCreate(db);
     }
+
+    /**
+     * Permet l'ajout d'user
+     *
+     * @param name
+     * @param password
+     * @return
+     */
 
     public long addUser(String name, String password){
         SQLiteDatabase db = this.getWritableDatabase();
@@ -52,6 +78,11 @@ public class DBHandler extends SQLiteOpenHelper {
         return db.insert(DBContract.Form.TABLE_NAME_USER,null,row);
     }
 
+    /**
+     * Recupere l'user a partir du nom
+     * @param name
+     * @return
+     */
     public user getUser(String name) {
         SQLiteDatabase db = this.getReadableDatabase();
         String[] projection = {
@@ -83,6 +114,12 @@ public class DBHandler extends SQLiteOpenHelper {
         return null;
     }
 
+    /**
+     * Ajout d'un like d'un user
+     * @param id
+     * @param uid
+     * @return
+     */
     public long addlike(int id, String uid){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues row = new ContentValues();
@@ -92,6 +129,11 @@ public class DBHandler extends SQLiteOpenHelper {
         return db.insert(DBContract.Form.TABLE_NAME_LIKED,null,row);
     }
 
+    /**
+     * Recupere les likes de l'user
+     * @param userid
+     * @return
+     */
     public ArrayList<String> getlikes(int userid){
         SQLiteDatabase db = this.getReadableDatabase();
         String[] projection = {
@@ -120,7 +162,12 @@ public class DBHandler extends SQLiteOpenHelper {
     }
 
 
-
+    /**
+     * permet de dislikes
+     *
+     * @param userid
+     * @param uid
+     */
     public void deletelike (int userid, String uid){
         SQLiteDatabase db = this.getWritableDatabase();
 
