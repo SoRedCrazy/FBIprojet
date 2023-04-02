@@ -115,12 +115,18 @@ public class DBHandler extends SQLiteOpenHelper {
     }
 
     /**
-     * Ajout d'un like d'un user
+     * Ajout d'un like d'un user et verifie si pas deja like
      * @param id
      * @param uid
      * @return
      */
     public long addlike(int id, String uid){
+        ArrayList<String> liststring=getlikes(id);
+        for(String s: liststring){
+            if(s.equals(uid)){
+                return -1;
+            }
+        }
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues row = new ContentValues();
         row.put(DBContract.Form.LIKED_COLUMN_UID,uid);
