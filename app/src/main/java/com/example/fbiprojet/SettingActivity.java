@@ -57,7 +57,7 @@ public class SettingActivity extends AppCompatActivity implements SharedPreferen
                     }
                 }
                 if(key.endsWith("langue")) {
-                    String langue = sharedPreferences.getString("langue", "en-US");
+                    String langue = sharedPreferences.getString("langue", "en-EN");
                     if(langue.equals("fr-FR")){
                         LocaleListCompat appLocale = LocaleListCompat.forLanguageTags("fr-FR");
                         AppCompatDelegate.setApplicationLocales(appLocale);

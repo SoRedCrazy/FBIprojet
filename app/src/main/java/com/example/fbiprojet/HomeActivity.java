@@ -126,7 +126,6 @@ public class HomeActivity extends AppCompatActivity {
         });
 
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-        System.out.println(sharedPreferences.getString("user_name", null));
         boolean darkmode = sharedPreferences.getBoolean("darkmode", false);
         if (darkmode) {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
@@ -140,12 +139,6 @@ public class HomeActivity extends AppCompatActivity {
             LocaleListCompat appLocale = LocaleListCompat.forLanguageTags("en-EN");
             AppCompatDelegate.setApplicationLocales(appLocale);
         }
-
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.clear();
-        editor.commit();
-
-        System.out.println("vidé");
     }
     /**
      * Ajoute les boutons du menu dans la toolbar

@@ -27,7 +27,7 @@ public class FavoriteActivity extends AppCompatActivity {
         Toolbar toolbar=findViewById(R.id.my_toolbar);
         setSupportActionBar(toolbar);
         sharedpreferences = getSharedPreferences("session", Context.MODE_PRIVATE);
-        if(sharedpreferences != null){
+        if(sharedpreferences == null){
             Intent it = new Intent(this , ConnexionActivity.class);
             startActivity(it);
         }
