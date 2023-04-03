@@ -27,7 +27,6 @@ public class WantedInfoActivity extends AppCompatActivity {
     ViewPager vp_pager;
     Wanted actual_wanted;
     TextView wanted_title;
-    TextView tags;
     ImageView wanted_image;
     private SharedPreferences sharedPreferences;
 
@@ -66,8 +65,7 @@ public class WantedInfoActivity extends AppCompatActivity {
                 i = new Intent(this, ConnexionActivity.class);
                 startActivity(i);
             } else {
-                String uid = view.findViewById(R.id.uid_info).toString();
-                handler.addlike(user_id, uid);
+                handler.addlike(user_id, actual_wanted.getUid());
                 Toast toast = Toast.makeText(this, "Like ajouté", Toast.LENGTH_LONG);
                 toast.show();
             }

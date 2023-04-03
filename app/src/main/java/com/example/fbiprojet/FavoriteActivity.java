@@ -5,17 +5,31 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.GridView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.koushikdutta.ion.Ion;
+
+import java.util.ArrayList;
+
+import kotlinx.coroutines.flow.SharingStarted;
+
 public class FavoriteActivity extends AppCompatActivity {
     SharedPreferences sharedpreferences;
-
+    DBHandler handler;
+    ArrayList<Wanted> wanteds;
+    GridView wanted_grid;
     /**
      * Preparation du layout plus verifie si connecter
      * @param savedInstanceState
@@ -26,11 +40,84 @@ public class FavoriteActivity extends AppCompatActivity {
         setContentView(R.layout.activity_favorite);
         Toolbar toolbar=findViewById(R.id.my_toolbar);
         setSupportActionBar(toolbar);
+        handler = new DBHandler(this);
+        wanted_grid = (GridView) findViewById(R.id.wanted_grid);
+        wanteds = new ArrayList<>();
         sharedpreferences = getSharedPreferences("session", Context.MODE_PRIVATE);
         if(sharedpreferences == null){
             Intent it = new Intent(this , ConnexionActivity.class);
             startActivity(it);
+        } else {
+            ArrayList<String> likes = handler.getlikes(sharedpreferences.getInt("username",-1));
+            for(String s : likes) {
+                System.out.println(s);
+                StringBuilder correct = new StringBuilder(s);
+                correct.deleteCharAt(0); correct.deleteCharAt(correct.length()-1);
+                String url = "https://api.fbi.gov/@wanted-person/"+correct;
+                Ion.with(this)
+                        .load(url)
+                        .setLogging("ION_LOGS", Log.DEBUG)
+                        .asJsonObject()
+                        .setCallback((e, result) -> {
+                            if (result != null){
+                                System.out.println(result.get("title"));
+                                wanteds.add(decodeJson(result));
+                            }
+                            WantedAdapter adapter = new WantedAdapter(FavoriteActivity.this, wanteds);
+                            wanted_grid.setAdapter(adapter);
+                        });
+            }
         }
+        wanted_grid.setOnItemClickListener((adapterView, view, i, l) -> {
+            Bundle b = new Bundle();
+            b.putSerializable("wanted",wanteds.get(i));
+            Intent toWanted = new Intent(FavoriteActivity.this, WantedInfoActivity.class)
+                    .putExtras(b);
+            startActivity(toWanted);
+        });
+    }
+
+    private Wanted decodeJson(JsonObject jso) {
+        Wanted res = new Wanted();
+        String titre = jso.get("title").toString();
+        String desc = jso.get("description").toString();
+        String warn = jso.get("warning_message").toString();
+        String remarques = jso.get("remarks").toString();
+        String nationalite = jso.get("nationality").toString();
+
+        if(titre.equals("null")) {
+            titre = "Aucun titre";
+        }
+        res.setTitle(titre);
+
+        if(desc.equals("null")) {
+            desc = "Aucune description";
+        }
+        res.setDescription(desc);
+
+        if(warn.equals("null")) {
+            warn = "Aucun avertissement";
+        }
+        res.setWarning(warn);
+
+        if(remarques.equals("null")) {
+            remarques = "Aucune remarque";
+        }
+        res.setRemarques(remarques);
+
+        if(nationalite.equals("null")) {
+            nationalite = "Nationalité non renseignée";
+        }
+        res.setNationalite(nationalite);
+
+        JsonArray categories = jso.get("subjects").getAsJsonArray();
+        for(JsonElement c : categories) {
+            res.addCategorie(c.toString());
+        }
+
+        res.setImages(new ImagesWanted(jso.get("images").getAsJsonArray()));
+        res.setUid(jso.get("uid").toString());
+        return res;
     }
 
     /**

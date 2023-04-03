@@ -199,8 +199,6 @@ public class HomeActivity extends AppCompatActivity {
                 .setLogging("ION_LOGS", Log.DEBUG)
                 .asJsonObject()
                 .setCallback((e, result) -> {
-                    Gson recup = new Gson();
-
                     if (result != null){
 //                        System.out.println(result.get("items").getAsJsonArray().size());
                         JsonArray jsowanteds = result.get("items").getAsJsonArray();
