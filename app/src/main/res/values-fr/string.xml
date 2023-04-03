@@ -1,21 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">FBI projet</string>
-    <string name="action_favorite">Favorie</string>
-    <string name="action_settings">preference</string>
-    <string name="action_home">acceuil</string>
-    <string name="action_internet">site du FBI</string>
-    <string name="action_phone">Appler</string>
+    <string name="app_name">Projet FBI</string>
+    <string name="action_favorite">Favoris</string>
+    <string name="action_settings">Préférences</string>
+    <string name="action_home">Acceuil</string>
+    <string name="action_internet">Site du FBI</string>
+    <string name="rechercher">Rechercher</string>
+    <string name="action_phone">Appeler le 911</string>
     <string name="title_darkmode">Mode sombre</string>
-    <string name="Sumary_darkmode">activer le mode sombre</string>
+    <string name="Sumary_darkmode">Activer le mode sombre</string>
     <string name="title_langue">Langue</string>
-    <string name="Sumary_langue">choix de la langue</string>
+    <string name="Sumary_langue">Choix de la langue</string>
     <string name="entries_langue">Langue</string>
-    <string name="register_connexion">connexion/inscription</string>
+    <string name="register_connexion">Connexion/Inscription</string>
     <string name="name">Nom</string>
-    <string name="password">mot de passe</string>
-    <string name="btn_register_connexion">connexion/inscription</string>
-    <string name="btn_logout">deconnexion</string>
+    <string name="password">Mot de passe</string>
+    <string name="btn_register_connexion">Connexion/Inscription</string>
+    <string name="btn_logout">Déconnexion</string>
+    <string name="bt_prec">Précédent</string>
+    <string name="bt_suiv">Suivant</string>
+    <string name="searchbytitle">Recherche par titre:</string>
+    <string name="nbres_tv">Nombre de résultats:</string>
+    <string name="nbres_et">10</string>
     <string-array name="lang">
         <item>Anglais</item>
         <item>Français</item>

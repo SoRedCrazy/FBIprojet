@@ -38,6 +38,7 @@ public class ConnexionActivity extends AppCompatActivity {
         Toolbar toolbar=findViewById(R.id.my_toolbar);
         setSupportActionBar(toolbar);
         db= new DBHandler(this);
+        System.out.println("passe ici caca");
         sharedpreferences = getSharedPreferences("session", Context.MODE_PRIVATE);
         String s =sharedpreferences.getString("user_name",null);
         if(s != null){

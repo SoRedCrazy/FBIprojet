@@ -1,21 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">FBI project</string>
-    <string name="action_favorite">Favorite</string>
-    <string name="action_settings">Setting</string>
+    <string name="action_favorite">Favorites</string>
+    <string name="action_settings">Settings</string>
     <string name="action_home">Home</string>
-    <string name="action_internet">web FBI</string>
-    <string name="action_phone">Call</string>
+    <string name="action_internet">Web FBI</string>
+    <string name="rechercher">Search</string>
+    <string name="action_phone">Call 911</string>
     <string name="title_darkmode">Dark mode</string>
-    <string name="Sumary_darkmode">active dark mode</string>
+    <string name="Sumary_darkmode">Activate dark mode</string>
     <string name="title_langue">Language</string>
-    <string name="Sumary_langue">choice of language</string>
+    <string name="Sumary_langue">Switch language</string>
     <string name="entries_langue">Language</string>
-    <string name="register_connexion">connexion/register</string>
-    <string name="name">name</string>
-    <string name="password">password</string>
-    <string name="btn_register_connexion">connexion/register</string>
-    <string name="btn_logout">logout</string>
+    <string name="register_connexion">Login/Sign up</string>
+    <string name="name">Name</string>
+    <string name="password">Password</string>
+    <string name="btn_register_connexion">Login/Sign up</string>
+    <string name="btn_logout">Logout</string>
+    <string name="bt_prec">Previous</string>
+    <string name="bt_suiv">Next</string>
+    <string name="searchbytitle">Search by title:</string>
+    <string name="nbres_tv">Number of results:</string>
+    <string name="nbres_et">10</string>
     <string-array name="lang">
         <item>English</item>
         <item>French</item>
