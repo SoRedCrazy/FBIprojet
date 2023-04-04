@@ -1,4 +1,4 @@
-package com.example.fbiprojet;
+package com.example.fbiprojet.adapters;
 
 import android.webkit.WebResourceRequest;
 import android.webkit.WebView;

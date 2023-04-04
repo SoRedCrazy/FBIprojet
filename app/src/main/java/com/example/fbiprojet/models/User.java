@@ -1,13 +1,13 @@
-package com.example.fbiprojet;
+package com.example.fbiprojet.models;
 
 /**
- * Objet user sert a notres DBHander
+ * Objet User sert a notres DBHander
  */
-public class user {
+public class User {
     int id;
     String name,password;
 
-    public user(int id, String name, String password) {
+    public User(int id, String name, String password) {
         this.id = id;
         this.name = name;
         this.password = password;

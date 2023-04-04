@@ -1,4 +1,4 @@
-package com.example.fbiprojet;
+package com.example.fbiprojet.fragments;
 
 import android.os.Bundle;
 import android.text.Html;
@@ -9,8 +9,11 @@ import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
 
+import com.example.fbiprojet.R;
+import com.example.fbiprojet.models.Wanted;
+
 /**
- * A fragment representing a list of Items.
+ * Fragment faisant apparaître les informations d'une personne recherchée
  */
 public class InfosFragment extends Fragment {
 
@@ -42,6 +45,12 @@ public class InfosFragment extends Fragment {
         return inflater.inflate(R.layout.fragment_infos, container, false);
     }
 
+    /**
+     * Une fois la vue créée, on ajoute des informations sur la personne recherchée au layout du fragment
+     * @param view The View returned by {@link #onCreateView(LayoutInflater, ViewGroup, Bundle)}.
+     * @param savedInstanceState If non-null, this fragment is being re-constructed
+     * from a previous saved state as given here.
+     */
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);

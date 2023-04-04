@@ -1,8 +1,11 @@
-package com.example.fbiprojet;
+package com.example.fbiprojet.models;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 
+/**
+ * Classe qui représente une personne recherchée
+ */
 public class Wanted implements Serializable {
     public String uid;
     public String title;
@@ -87,6 +90,11 @@ public class Wanted implements Serializable {
         return nationalite;
     }
 
+    /**
+     * Fonction qui retourne les catégories selon l'API de la fiche Most Wanted
+     * (exemple: contre espionnage, braquage, meurtre, disparition, ...)
+     * @return
+     */
     public String getCategories() {
         String res = "";
         for(String s : categories) {

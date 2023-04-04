@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".WantedInfoActivity">
+    tools:context=".activities.WantedInfoActivity">
 
     <TextView
         android:id="@+id/wanted_title"

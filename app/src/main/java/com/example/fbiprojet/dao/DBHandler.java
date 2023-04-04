@@ -1,4 +1,4 @@
-package com.example.fbiprojet;
+package com.example.fbiprojet.dao;
 
 
 import android.annotation.SuppressLint;
@@ -9,7 +9,8 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-import java.lang.reflect.Array;
+import com.example.fbiprojet.models.User;
+
 import java.util.ArrayList;
 
 /**
@@ -62,7 +63,7 @@ public class DBHandler extends SQLiteOpenHelper {
     }
 
     /**
-     * Permet l'ajout d'user
+     * Permet l'ajout d'User
      *
      * @param name
      * @param password
@@ -79,11 +80,11 @@ public class DBHandler extends SQLiteOpenHelper {
     }
 
     /**
-     * Recupere l'user a partir du nom
+     * Recupere l'User a partir du nom
      * @param name
      * @return
      */
-    public user getUser(String name) {
+    public User getUser(String name) {
         SQLiteDatabase db = this.getReadableDatabase();
         String[] projection = {
                 DBContract.Form.USER_ID,
@@ -108,14 +109,14 @@ public class DBHandler extends SQLiteOpenHelper {
             @SuppressLint("Range") String username = cursor.getString(cursor.getColumnIndex(DBContract.Form.USER_COLUMN_NAME));
             @SuppressLint("Range") String password = cursor.getString(cursor.getColumnIndex(DBContract.Form.USER_COLUMN_PASSWORD));
             cursor.close();
-            return new user(id,username,password);
+            return new User(id,username,password);
         }
         cursor.close();
         return null;
     }
 
     /**
-     * Ajout d'un like d'un user et verifie si pas deja like
+     * Ajout d'un like d'un User et verifie si pas deja like
      * @param id
      * @param uid
      * @return
@@ -136,7 +137,7 @@ public class DBHandler extends SQLiteOpenHelper {
     }
 
     /**
-     * Recupere les likes de l'user
+     * Recupere les likes de l'User
      * @param userid
      * @return
      */

@@ -1,4 +1,4 @@
-package com.example.fbiprojet;
+package com.example.fbiprojet.activities;
 
 import android.content.Context;
 import android.content.Intent;
@@ -9,12 +9,15 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+
+import com.example.fbiprojet.dao.DBHandler;
+import com.example.fbiprojet.R;
+import com.example.fbiprojet.models.User;
 
 /**
  * Gere la inscription et la connexion de du layout activity_connexion_register.xml
@@ -100,7 +103,7 @@ public class ConnexionActivity extends AppCompatActivity {
         EditText edtname = (EditText) findViewById(R.id.name);
         EditText edtpassord = (EditText) findViewById(R.id.password);
 
-        user use = db.getUser(edtname.getText().toString());
+        User use = db.getUser(edtname.getText().toString());
 
         if(use==null){
             int id= (int) db.addUser(edtname.getText().toString(),edtpassord.getText().toString());

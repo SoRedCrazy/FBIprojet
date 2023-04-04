@@ -1,4 +1,4 @@
-package com.example.fbiprojet;
+package com.example.fbiprojet.activities;
 
 import android.content.Context;
 import android.content.Intent;
@@ -15,15 +15,17 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
-import com.google.gson.Gson;
+import com.example.fbiprojet.dao.DBHandler;
+import com.example.fbiprojet.models.ImagesWanted;
+import com.example.fbiprojet.R;
+import com.example.fbiprojet.models.Wanted;
+import com.example.fbiprojet.adapters.WantedAdapter;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.koushikdutta.ion.Ion;
 
 import java.util.ArrayList;
-
-import kotlinx.coroutines.flow.SharingStarted;
 
 public class FavoriteActivity extends AppCompatActivity {
     SharedPreferences sharedpreferences;
@@ -77,6 +79,12 @@ public class FavoriteActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * Fonction qui transforme un objet JsonObject reçu via l'API
+     * et le traite pour renvoyer un objet Wanted
+     * @param jso objet JsonObject reçu de l'API à traiter
+     * @return un objet Wanted
+     */
     private Wanted decodeJson(JsonObject jso) {
         Wanted res = new Wanted();
         String titre = jso.get("title").toString();

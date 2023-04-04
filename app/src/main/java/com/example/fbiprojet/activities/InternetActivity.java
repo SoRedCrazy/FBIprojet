@@ -1,10 +1,12 @@
-package com.example.fbiprojet;
+package com.example.fbiprojet.activities;
 
 import android.os.Bundle;
 import android.webkit.WebView;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
+
+import com.example.fbiprojet.adapters.InternetWebViewClient;
+import com.example.fbiprojet.R;
 
 public class InternetActivity extends AppCompatActivity {
     WebView wb;

@@ -1,4 +1,4 @@
-package com.example.fbiprojet;
+package com.example.fbiprojet.adapters;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -8,15 +8,21 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.fbiprojet.R;
+import com.example.fbiprojet.models.Wanted;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
+/**
+ * Classe Adapter qui permet d'afficher toutes les personnes recherchées dans une GridView
+ */
 public class WantedAdapter extends BaseAdapter {
 
     private Context context;
     private LayoutInflater inflater;
     private ArrayList<Wanted> wanteds;
+
 
     public WantedAdapter(Context c, ArrayList<Wanted> wanteds) {
         context = c;
@@ -40,6 +46,13 @@ public class WantedAdapter extends BaseAdapter {
 
     public String getItemUid(int i) { return wanteds.get(i).getUid(); }
 
+    /**
+     * Fonction qui insère la photo et l'image de la personne recherchée dans un layout item
+     * @param i
+     * @param view
+     * @param viewGroup
+     * @return
+     */
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
         if (inflater == null){

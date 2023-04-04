@@ -1,25 +1,30 @@
-package com.example.fbiprojet;
+package com.example.fbiprojet.activities;
 
 import static androidx.fragment.app.FragmentStatePagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentPagerAdapter;
-import androidx.preference.PreferenceManager;
 import androidx.viewpager.widget.ViewPager;
 
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.fbiprojet.dao.DBHandler;
+import com.example.fbiprojet.adapters.PageAdapter;
+import com.example.fbiprojet.R;
+import com.example.fbiprojet.models.Wanted;
 import com.google.android.material.tabs.TabLayout;
 import com.squareup.picasso.Picasso;
 
+/**
+ * Activité permettant l'affichage détaillé d'une seule personne recherchée lors d'un clic dans la GridView
+ */
 public class WantedInfoActivity extends AppCompatActivity {
     FragmentPagerAdapter adapterViewPager;
     ImageButton return_button;

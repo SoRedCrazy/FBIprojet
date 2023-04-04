@@ -1,4 +1,4 @@
-package com.example.fbiprojet;
+package com.example.fbiprojet.activities;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -7,7 +7,6 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.os.LocaleListCompat;
 import androidx.preference.PreferenceManager;
 
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
@@ -16,15 +15,16 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.inputmethod.InputMethodManager;
-import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
-import com.google.gson.Gson;
+import com.example.fbiprojet.models.ImagesWanted;
+import com.example.fbiprojet.R;
+import com.example.fbiprojet.models.Wanted;
+import com.example.fbiprojet.adapters.WantedAdapter;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
@@ -66,7 +66,15 @@ public class HomeActivity extends AppCompatActivity {
         nbres_et = (TextView) findViewById(R.id.nbres_et);
         nb_page = (TextView) findViewById(R.id.nb_page);
         nb_page.setText(String.valueOf(page));
+
         nbres_sb.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            /**
+             * Fonction qui surveille la modification de la seekbar
+             * et modifie le nombre d'éléments à retourner de l'API
+             * @param seekBar
+             * @param i
+             * @param b
+             */
             @Override
             public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
                 Integer nb = nbres_sb.getProgress();
@@ -87,21 +95,6 @@ public class HomeActivity extends AppCompatActivity {
         bt_prec = (Button) findViewById(R.id.bt_prec);
         bt_suiv = (Button) findViewById(R.id.bt_suiv);
         titre_et = (EditText) findViewById(R.id.titre_et);
-
-        titre_et.setOnFocusChangeListener((v, hasFocus) -> {
-            if (hasFocus) {
-                grid_view.setVisibility(View.INVISIBLE);
-                bt_prec.setVisibility(View.INVISIBLE);
-                bt_suiv.setVisibility(View.INVISIBLE);
-            }
-            else {
-                grid_view.setVisibility(View.VISIBLE);
-                bt_prec.setVisibility(View.VISIBLE);
-                bt_suiv.setVisibility(View.VISIBLE);
-                InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-                imm.hideSoftInputFromWindow(v.getWindowToken(),0);
-            }
-        });
 
         bt_prec.setOnClickListener(v -> {
             if (page > 1){
@@ -182,6 +175,12 @@ public class HomeActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    /**
+     * Fonction qui exécute la requête via l'API FBI
+     * Elle récupère le nombre d'éléments voulus et la page voulue,
+     * décode le résultat avec decodeJson et envoie les éléments à l'adapter
+     * @param v
+     */
     public void search(View v) {
         Integer nb = nbres_sb.getProgress();
         wanteds.clear();
@@ -217,6 +216,12 @@ public class HomeActivity extends AppCompatActivity {
         bt_suiv.setVisibility(View.VISIBLE);
     }
 
+    /**
+     * Fonction qui transforme un objet JsonObject reçu via l'API
+     * et le traite pour renvoyer un objet Wanted
+     * @param jso objet JsonObject reçu de l'API à traiter
+     * @return un objet Wanted
+     */
     private Wanted decodeJson(JsonObject jso) {
         Wanted res = new Wanted();
         String titre = jso.get("title").toString();
