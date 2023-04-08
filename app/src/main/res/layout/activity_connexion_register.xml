@@ -5,11 +5,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
+
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/my_toolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:background="?attr/colorPrimary"
+        android:background="@color/blue_fbi"
         android:elevation="4dp"
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
@@ -41,14 +42,15 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:hint="@string/password" />
+
         <Button
             android:id="@+id/btn_connexion"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:backgroundTint="#004791"
             android:gravity="center"
-            android:text="@string/btn_register_connexion"
             android:onClick="run"
-            />
+            android:text="@string/btn_register_connexion" />
 
     </LinearLayout>
 </LinearLayout>

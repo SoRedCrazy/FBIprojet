@@ -5,113 +5,126 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    >
+    android:orientation="vertical">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/my_toolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:background="?attr/colorPrimary"
+        android:background="@color/blue_fbi"
         android:elevation="4dp"
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
         tools:ignore="MissingConstraints" />
 
-    <GridView
-        android:id="@+id/wanted_grid"
-        android:layout_width="match_parent"
-        android:layout_height="420dp"
-        android:layout_marginTop="12dp"
-        android:layout_marginBottom="20dp"
-        android:horizontalSpacing="10dp"
-        android:numColumns="2"
-        android:verticalSpacing="10dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/rechercher"
-        app:layout_constraintVertical_bias="0.0" />
-
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
+
         <TextView
             android:id="@+id/title_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/searchbytitle" />
+
         <EditText
             android:id="@+id/titre_et"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/title_tv"
-            />
+            android:layout_below="@id/title_tv" />
+
         <TextView
             android:id="@+id/nbres_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/nbres_tv"
+            android:layout_marginLeft="115dp"
             android:layout_toRightOf="@id/title_tv"
-            android:paddingLeft="15dp"/>
+            android:paddingLeft="15dp"
+            android:text="@string/nbres_tv" />
+
         <TextView
             android:id="@+id/nbres_et"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/nbres_et"
             android:layout_toRightOf="@id/nbres_tv"
-            android:paddingLeft="5dp"/>
+            android:paddingLeft="5dp"
+            android:text="@string/nbres_et" />
+
         <SeekBar
             android:id="@+id/seekBar"
             android:layout_width="121dp"
             android:layout_height="20dp"
+            android:layout_below="@+id/nbres_tv"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="211dp"
+            android:layout_marginTop="7dp"
             android:max="25"
             android:min="1"
-            android:progress="10"
-            android:layout_below="@id/nbres_tv"/>
+            android:progress="10" />
+
+        <Button
+            android:id="@+id/rechercher"
+            style="@style/Theme.FBIprojet"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/titre_et"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="162dp"
+            android:layout_marginLeft="171dp"
+            android:layout_marginTop="-3dp"
+            android:layout_marginEnd="161dp"
+            android:backgroundTint="#004791"
+            android:text="@string/rechercher" />
+
+        <Button
+            android:id="@+id/bt_prec"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/rechercher"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="27dp"
+            android:layout_marginTop="-3dp"
+            android:backgroundTint="#004791"
+            android:text="@string/bt_prec"
+            android:theme="@style/Theme.FBIprojet"
+            android:visibility="visible" />
+
+        <Button
+            android:id="@+id/bt_suiv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/rechercher"
+            android:layout_marginStart="146dp"
+            android:layout_marginLeft="281dp"
+            android:layout_marginTop="-4dp"
+            android:layout_toEndOf="@+id/bt_prec"
+            android:layout_toRightOf="@id/nb_page"
+            android:backgroundTint="#004791"
+            android:text="@string/bt_suiv"
+            android:theme="@style/Theme.FBIprojet"
+            android:visibility="visible" />
+
+        <TextView
+            android:id="@+id/nb_page"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/rechercher"
+            android:layout_marginStart="74dp"
+            android:layout_marginLeft="74dp"
+            android:layout_marginTop="11dp"
+            android:layout_toEndOf="@+id/bt_prec"
+            android:layout_toRightOf="@id/bt_prec"
+            android:visibility="gone" />
 
     </RelativeLayout>
-    <Button
-        android:id="@+id/rechercher"
-        style="@style/Widget.AppCompat.Button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/rechercher"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.203" />
 
-    <Button
-        android:id="@+id/bt_prec"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:text="@string/bt_prec"
-        android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <Button
-        android:id="@+id/bt_suiv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-        android:text="@string/bt_suiv"
-        android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
-
-    <TextView
-        android:id="@+id/nb_page"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="66dp"
-        android:layout_marginTop="25dp"
-        android:layout_marginEnd="67dp"
-        app:layout_constraintEnd_toStartOf="@+id/bt_suiv"
-        app:layout_constraintStart_toEndOf="@+id/bt_prec"
-        app:layout_constraintTop_toBottomOf="@+id/wanted_grid" />
+    <GridView
+        android:id="@+id/wanted_grid"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:horizontalSpacing="10dp"
+        android:numColumns="2"
+        android:verticalSpacing="10dp" />
 
 </LinearLayout>

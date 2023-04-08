@@ -64,6 +64,7 @@ public class HomeActivity extends AppCompatActivity {
         grid_view.setAdapter(adapter);
         bt_prec.setVisibility(savedInstanceState.getInt("vis_prec"));
         bt_suiv.setVisibility(savedInstanceState.getInt("vis_prec"));
+        nb_page.setVisibility(savedInstanceState.getInt("vis_prec"));
     }
     /**
      * Preparation du layout plus verfie les parametre de preference
@@ -235,6 +236,7 @@ public class HomeActivity extends AppCompatActivity {
                 });
         bt_prec.setVisibility(View.VISIBLE);
         bt_suiv.setVisibility(View.VISIBLE);
+        nb_page.setVisibility(View.VISIBLE);
     }
 
     /**

@@ -50,7 +50,7 @@
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/pageViewer"
         android:layout_width="match_parent"
-        android:layout_height="300dp"
+        android:layout_height="250dp"
         android:isScrollContainer="true"
         android:scrollbars="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
