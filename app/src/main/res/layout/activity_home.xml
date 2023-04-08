@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
 
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    >
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/my_toolbar"
@@ -30,6 +32,44 @@
         app:layout_constraintTop_toBottomOf="@+id/rechercher"
         app:layout_constraintVertical_bias="0.0" />
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/title_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/searchbytitle" />
+        <EditText
+            android:id="@+id/titre_et"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/title_tv"
+            />
+        <TextView
+            android:id="@+id/nbres_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/nbres_tv"
+            android:layout_toRightOf="@id/title_tv"
+            android:paddingLeft="15dp"/>
+        <TextView
+            android:id="@+id/nbres_et"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/nbres_et"
+            android:layout_toRightOf="@id/nbres_tv"
+            android:paddingLeft="5dp"/>
+        <SeekBar
+            android:id="@+id/seekBar"
+            android:layout_width="121dp"
+            android:layout_height="20dp"
+            android:max="25"
+            android:min="1"
+            android:progress="10"
+            android:layout_below="@id/nbres_tv"/>
+
+    </RelativeLayout>
     <Button
         android:id="@+id/rechercher"
         style="@style/Widget.AppCompat.Button"
@@ -42,27 +82,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.203" />
-
-    <EditText
-        android:id="@+id/titre_et"
-        android:layout_width="144dp"
-        android:layout_height="37dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="92dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/title_tv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="72dp"
-        android:text="@string/searchbytitle"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/bt_prec"
@@ -95,36 +114,4 @@
         app:layout_constraintStart_toEndOf="@+id/bt_prec"
         app:layout_constraintTop_toBottomOf="@+id/wanted_grid" />
 
-    <SeekBar
-        android:id="@+id/seekBar"
-        android:layout_width="121dp"
-        android:layout_height="20dp"
-        android:layout_marginStart="248dp"
-        android:layout_marginTop="108dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:max="25"
-        android:min="1"
-        android:progress="10"/>
-
-    <TextView
-        android:id="@+id/nbres_tv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="248dp"
-        android:layout_marginTop="70dp"
-        android:text="@string/nbres_tv"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/nbres_et"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="280dp"
-        android:layout_marginTop="88dp"
-        android:text="@string/nbres_et"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>

@@ -18,7 +18,6 @@ import com.squareup.picasso.Picasso;
  */
 public class ImagesFragment extends Fragment {
 
-
     private Wanted actual_wanted;
 
     public ImagesFragment() {
@@ -32,8 +31,24 @@ public class ImagesFragment extends Fragment {
     }
 
     @Override
+    public void onSaveInstanceState(Bundle savedInstanceState) {
+
+        // Save UI state changes to the savedInstanceState.
+        // This bundle will be passed to onCreate if the process is
+        // killed and restarted.
+
+        savedInstanceState.putSerializable("wanted", actual_wanted);
+        // etc.
+
+        super.onSaveInstanceState(savedInstanceState);
+    }
+
+    @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        if(savedInstanceState != null) {
+            actual_wanted = (Wanted) savedInstanceState.getSerializable("wanted");
+        }
     }
 
     @Override

@@ -15,12 +15,15 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.fbiprojet.adapters.WantedAdapter;
 import com.example.fbiprojet.dao.DBHandler;
 import com.example.fbiprojet.adapters.PageAdapter;
 import com.example.fbiprojet.R;
 import com.example.fbiprojet.models.Wanted;
 import com.google.android.material.tabs.TabLayout;
 import com.squareup.picasso.Picasso;
+
+import java.util.ArrayList;
 
 /**
  * Activité permettant l'affichage détaillé d'une seule personne recherchée lors d'un clic dans la GridView
@@ -34,6 +37,30 @@ public class WantedInfoActivity extends AppCompatActivity {
     TextView wanted_title;
     ImageView wanted_image;
     private SharedPreferences sharedPreferences;
+
+    @Override
+    public void onSaveInstanceState(Bundle savedInstanceState) {
+
+        // Save UI state changes to the savedInstanceState.
+        // This bundle will be passed to onCreate if the process is
+        // killed and restarted.
+
+        savedInstanceState.putSerializable("wanted", actual_wanted);
+        // etc.
+
+        super.onSaveInstanceState(savedInstanceState);
+    }
+
+    @Override
+    public void onRestoreInstanceState(Bundle savedInstanceState) {
+
+        super.onRestoreInstanceState(savedInstanceState);
+
+        // Restore UI state from the savedInstanceState.
+        // This bundle has also been passed to onCreate.
+        actual_wanted = (Wanted) savedInstanceState.getSerializable("wanted");
+    }
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

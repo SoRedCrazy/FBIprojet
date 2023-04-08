@@ -44,6 +44,27 @@ public class HomeActivity extends AppCompatActivity {
     TextView nb_page;
     Button bt_prec;
     Button bt_suiv;
+
+    @Override
+    public void onSaveInstanceState(Bundle savedInstanceState) {
+
+        savedInstanceState.putSerializable("wanteds", wanteds);
+        savedInstanceState.putInt("vis_prec", bt_prec.getVisibility());
+
+        super.onSaveInstanceState(savedInstanceState);
+    }
+
+    @Override
+    public void onRestoreInstanceState(Bundle savedInstanceState) {
+
+        super.onRestoreInstanceState(savedInstanceState);
+
+        wanteds = (ArrayList<Wanted>) savedInstanceState.getSerializable("wanteds");
+        WantedAdapter adapter = new WantedAdapter(HomeActivity.this, wanteds);
+        grid_view.setAdapter(adapter);
+        bt_prec.setVisibility(savedInstanceState.getInt("vis_prec"));
+        bt_suiv.setVisibility(savedInstanceState.getInt("vis_prec"));
+    }
     /**
      * Preparation du layout plus verfie les parametre de preference
      * @param savedInstanceState

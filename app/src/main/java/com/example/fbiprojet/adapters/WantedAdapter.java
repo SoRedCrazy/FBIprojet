@@ -65,9 +65,13 @@ public class WantedAdapter extends BaseAdapter {
         TextView name = view.findViewById(R.id.grid_wanted_title);
         ImageView photo = view.findViewById(R.id.grid_wanted_image);
 
-        name.setText(wanteds.get(i).getTitle());
-//        System.out.println(wanteds.get(i).getImages().getImageUrl(0));
-        Picasso.get().load(wanteds.get(i).getImages().getImageUrl(0)).resize(100,120).into(photo);
+        try {
+            name.setText(wanteds.get(i).getTitle());
+            //        System.out.println(wanteds.get(i).getImages().getImageUrl(0));
+            Picasso.get().load(wanteds.get(i).getImages().getImageUrl(0)).resize(100, 120).into(photo);
+        } catch (Exception e) {
+            System.out.println("Doucement avec la GridView !");
+        }
         return view;
     }
 }
